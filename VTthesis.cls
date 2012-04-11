@@ -2,7 +2,7 @@
 %%% IDENTIFICATION --------------------------------------------------------
 %\NeedsTeXFormat{LaTeX2e}[01/01/10]
 \ProvidesClass{VTthesis}
-    [11/04/2012 v1.2 Virginia Tech Thesis Proposal and Thesis Class]
+    [11/04/2012 v1.21 Virginia Tech Thesis Proposal and Thesis Class]
 
 %Declaration of options
 \newif\if@sigpage \@sigpagefalse
@@ -211,14 +211,14 @@ frame=single,
 
 \def\ackpage{
   \chapter*{Acknowledgments}
-  \pdfbookmark[1]{Acknowledgments}{acknowledgments}
+  %\pdfbookmark[1]{Acknowledgments}{acknowledgments}
   \@acknowledge
   \newpage
 }
 
 \def\dedpage{
   \chapter*{Dedication}
-  \pdfbookmark[1]{Dedication}{dedication}
+  %\pdfbookmark[1]{Dedication}{dedication}
   \@dedication
   \newpage
 }

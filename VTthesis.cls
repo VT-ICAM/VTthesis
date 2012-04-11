@@ -141,7 +141,8 @@ frame=single,
   \pagenumbering{arabic}}
 \newcommand{\biblio}{
   \cleardoublepage
-  \fancyhead[C]{Bibliography}}
+  \addcontentsline{toc}{chapter}{\bibname}
+  \fancyhead[C]{\bibname}}
 \newcommand{\backmatter}{
   \if@openright
     \cleardoublepage

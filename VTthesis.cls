@@ -1,13 +1,17 @@
 % v1.22 by Erich L Foster 10 April 2012
 %%% IDENTIFICATION --------------------------------------------------------
 %\NeedsTeXFormat{LaTeX2e}[01/01/10]
-\ProvidesClass{VTthesis}
-    [11/04/2012 v1.22 Virginia Tech Thesis Proposal and Thesis Class]
-
+\ProvidesClass{VTthesis}[11/04/2012 v2.0 Virginia Tech Thesis Proposal and Thesis Class]
+\RequirePackage{etoolbox}
 %Declaration of options
-\newif\if@sigpage \@sigpagefalse
-\DeclareOption{sig}{\@sigpagetrue}
-\DeclareOption{nosig}{\@sigpagefalse}
+\newbool{@sig} 
+\boolfalse{@sig}
+\newbool{@proposal} 
+\boolfalse{@proposal}
+
+\DeclareOption{sig}{\booltrue{@sig}}
+\DeclareOption{nosig}{\boolfalse{@sig}}
+\DeclareOption{proposal}{\booltrue{@proposal}}
 %%% EXECUTION OF OPTIONS --------------------------------------------------
 %% default to:
 \ExecuteOptions{nosig}
@@ -75,34 +79,46 @@ frame=single,
 \fi
 
 %committee information
+\newbool{@1st} 
+\boolfalse{@1st}
+\newbool{@2nd} 
+\boolfalse{@2nd}
+\newbool{@3rd} 
+\boolfalse{@3rd}
+\newbool{@4th} 
+\boolfalse{@4th}
+\newbool{@5th} 
+\boolfalse{@5th}
 \def\@principaladvisor{}
-\def\@firstreader{*}
-\def\@secondreader{*}
-\def\@thirdreader{*}
-\def\@fourthreader{*}
-\def\@fifthreader{*}
+\def\@firstreader{}
+\def\@secondreader{}
+\def\@thirdreader{}
+\def\@fourthreader{}
+\def\@fifthreader{}
 \def\principaladvisor#1{\gdef\@principaladvisor{#1}}
-\def\firstreader#1{\gdef\@firstreader{#1}}
-\def\secondreader#1{\gdef\@secondreader{#1}}
-\def\thirdreader#1{\gdef\@thirdreader{#1}}
-\def\fourthreader#1{\gdef\@fourthreader{#1}}
-\def\fifthreader#1{\gdef\@fifthreader{#1}}
+\def\firstreader#1{\booltrue{@1st} \gdef\@firstreader{#1}}
+\def\secondreader#1{\booltrue{@2nd} \gdef\@secondreader{#1}}
+\def\thirdreader#1{\booltrue{@3rd} \gdef\@thirdreader{#1}}
+\def\fourthreader#1{\booltrue{@4th} \gdef\@fourthreader{#1}}
+\def\fifthreader#1{\booltrue{@5th} \gdef\@fifthreader{#1}}
 
 %abstract, acknowledgements, dedication, and keywords setup
 \def\@abstract{}
 \def\@acknowledge{}
 \def\@dedication{}
-\def\@keywords{*}
-\newif\if@abs
-\@absfalse
-\newif\if@ack
-\@ackfalse
-\newif\if@ded
-\@dedfalse
-\def\abstract#1{\@abstrue\gdef\@abstract{#1}}
-\def\acknowledge#1{\@acktrue\gdef\@acknowledge{#1}}
-\def\dedication#1{\@dedtrue\gdef\@dedication{#1}}
-\def\keywords#1{\gdef\@keywords{#1}}
+\def\@keywords{}
+\newbool{@key}
+\boolfalse{@key}
+\newbool{@abs}
+\boolfalse{@abs}
+\newbool{@ack}
+\boolfalse{@ack}
+\newbool{@ded}
+\boolfalse{@ded}
+\def\abstract#1{\booltrue{@abs} \gdef\@abstract{#1}}
+\def\acknowledge#1{\booltrue{@ack} \gdef\@acknowledge{#1}}
+\def\dedication#1{\booltrue{@ded} \gdef\@dedication{#1}}
+\def\keywords#1{\booltrue{@key} \gdef\@keywords{#1}}
 
 \newcommand{\@vtcopyright}{Copyright \@copyrightyear, \@author}
 
@@ -144,9 +160,12 @@ frame=single,
 	\rm \@author\\
 	\vfill
 	
-  \noindent Dissertation submitted to the Faculty of the \\
-  Virginia Polytechnic Institute and State University \\
-  in partial fulfillment of the requirements for the degree of \\ 
+  \ifbool{@proposal}{
+    \noindent Thesis proposal for}
+    {\noindent Dissertation submitted to the Faculty of the \\
+    Virginia Polytechnic Institute and State University \\
+    in partial fulfillment of the requirements for the degree of \\} 
+
   \vfill 
   \@degree \\
   in \\
@@ -154,30 +173,18 @@ frame=single,
   \vfill
 
   \noindent \@principaladvisor, Chair \\
-  \if*\@firstreader \else 
-    \@firstreader \\
-  \fi
-  \if*\@secondreader \else 
-    \@secondreader \\
-  \fi
-  \if*\@thirdreader \else 
-    \@thirdreader \\
-  \fi
-  \if*\@fourthreader \else 
-    \@fourthreader \\ 
-  \fi
-  \if*\@fifthreader \else 
-    \@fifthreader \\ 
-  \fi
+  \ifbool{@1st}{\@firstreader\\}{}
+  \ifbool{@2nd}{\@secondreader\\}{}
+  \ifbool{@3rd}{\@thirdreader\\}{}
+  \ifbool{@4th}{\@fourthreader\\}{}
+  \ifbool{@5th}{\@fifthreader\\}{}
   \vfill
 
 	\@submitdate\\
 	Blacksburg, Virginia\\
 
-  \if*\@keywords \else 
-    \vfill 
-    Keywords: \@keywords \\
-  \fi
+  \ifbool{@key}{\vfill 
+    Keywords: \@keywords\\}{}
 
   \vfill
 	\@vtcopyright \\
@@ -220,24 +227,20 @@ frame=single,
 
 %This is where the main magic happens
 \renewcommand\maketitle{
-  %\if@sig
+  %\ifbool{@sig}{
   %  \pdfbookmark[1]{Signature Page}{sigpage}
-  %  \sigpage
-  %\fi
+  %  \sigpage}{}
 
   \setcounter{page}{0}
   \pdfbookmark[1]{Titlepage}{titlepage}
   \titlepage
-  \if@abs
+  \ifbool{@abs}{
     \pdfbookmark[1]{Abstract}{abstract}
-    \abspage
-  \fi
-  \if@ded
+    \abspage}{}
+  \ifbool{@ded}{
     \pdfbookmark[1]{Dedication}{dedication}
-    \dedpage
-  \fi
-  \if@ack
+    \dedpage}{}
+  \ifbool{@ack}{
     \pdfbookmark[1]{Acknowledgements}{acknowledgements}
-    \ackpage
-  \fi
+    \ackpage}{}
 }

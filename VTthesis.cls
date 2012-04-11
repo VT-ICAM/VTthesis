@@ -1,8 +1,8 @@
-% v1.0 by Erich L Foster 10 April 2012
+% v1.2 by Erich L Foster 10 April 2012
 %%% IDENTIFICATION --------------------------------------------------------
 %\NeedsTeXFormat{LaTeX2e}[01/01/10]
 \ProvidesClass{VTthesis}
-    [10/04/2012 v1.0 Virginia Tech Thesis Proposal and Thesis Class]
+    [11/04/2012 v1.2 Virginia Tech Thesis Proposal and Thesis Class]
 
 %Declaration of options
 \newif\if@sigpage \@sigpagefalse
@@ -128,6 +128,9 @@ frame=single,
 \newcommand{\mainmatter}{
   \cleardoublepage
   \pagenumbering{arabic}}
+\newcommand{\biblio}{
+  \cleardoublepage
+  \fancyhead[C]{Bibliography}}
 \newcommand{\backmatter}{
   \if@openright
     \cleardoublepage

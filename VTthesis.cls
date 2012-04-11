@@ -1,8 +1,8 @@
-% v1.2 by Erich L Foster 10 April 2012
+% v1.22 by Erich L Foster 10 April 2012
 %%% IDENTIFICATION --------------------------------------------------------
 %\NeedsTeXFormat{LaTeX2e}[01/01/10]
 \ProvidesClass{VTthesis}
-    [11/04/2012 v1.21 Virginia Tech Thesis Proposal and Thesis Class]
+    [11/04/2012 v1.22 Virginia Tech Thesis Proposal and Thesis Class]
 
 %Declaration of options
 \newif\if@sigpage \@sigpagefalse
@@ -55,15 +55,18 @@ frame=single,
 % front matter defining macros
 \def\@title{}
 \def\@author{}
-\def\type#1{\gdef\@type{#1}}
-\def\degree#1{\gdef\@degree{#1}}
+\def\@degree{Doctor of Philosophy}
 \def\@program{Mathematics}
-\def\program#1{\gdef\@program{#1}}
-\def\submitdate#1{\gdef\@submitdate{#1}}
-\def\@submitdate{\ifcase\the\month\or
+\def\@submitdate{\the\day \space \ifcase\the\month\or
   January\or February\or March\or April\or May\or June\or
   July\or August\or September\or October\or November\or December\fi
   \space \number\the\year}
+
+\def\type#1{\gdef\@type{#1}}
+\def\degree#1{\gdef\@degree{#1}}
+\def\program#1{\gdef\@program{#1}}
+\def\submitdate#1{\gdef\@submitdate{#1}}
+
 \ifnum\month>9
     \@tempcnta=\year \advance\@tempcnta by 1
     \edef\@copyrightyear{\number\the\@tempcnta}
@@ -111,14 +114,6 @@ frame=single,
 \fancyhead[R]{\thepage}
 \fancyfoot[L,C,R]{}
 \renewcommand\headrulewidth{0.0pt}
-%\renewcommand\footrulewidth{0.4pt}
-
-% commands to set header block info
-%\newcommand{\name}[1]{\def\hwset@name{#1}}
-%\newcommand{\class}[1]{\def\hwset@class{#1}}
-%\newcommand{\assignment}[1]{\def\hwset@assignment{#1}}
-%\newcommand{\duedate}[1]{\def\hwset@duedate{#1}}
-%\newcommand{\extraline}[1]{\def\hwset@extraline{#1}}
 
 %setup up frontmatter, mainmatter, backmatter
 %the formatting for these sections will be different

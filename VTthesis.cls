@@ -23,7 +23,7 @@
 \LoadClass[11pt,letterpaper]{report}%book}
 
 %% AMSLaTeX math environments and symbols
-\RequirePackage{amsmath, amsthm, amssymb}
+\RequirePackage{amsmath,amssymb}
 \RequirePackage[normalem]{ulem}
 \RequirePackage[hmargin=1in,vmargin=1in,footskip=.25in,headsep=.25in,nomarginpar]{geometry}
 \RequirePackage{enumerate}
@@ -144,13 +144,11 @@ frame=single,
   \addcontentsline{toc}{chapter}{\bibname}
   \fancyhead[C]{\bibname}}
 \newcommand{\backmatter}{
-  \if@openright
-    \cleardoublepage
-  \else
-    \clearpage
-  \fi
+  \cleardoublepage
   \fancyhead[C]{\appendixname\ \thechapter}
-  }
+}
+\pretocmd{\bibliography}{\biblio}{}{}
+\apptocmd{\appendix}{\backmatter}{}{}
 
 %setup title page, abstract page, dedication page, and acknowledgement page
 \def\titlepage{%

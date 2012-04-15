@@ -1,7 +1,7 @@
 % v1.22 by Erich L Foster 10 April 2012
 %%% IDENTIFICATION --------------------------------------------------------
 %\NeedsTeXFormat{LaTeX2e}[01/01/10]
-\ProvidesClass{VTthesis}[11/04/2012 v2.0 Virginia Tech Thesis Proposal and Thesis Class]
+\ProvidesClass{VTthesis}[15/04/2012 v2.3 Virginia Tech Thesis Proposal and Thesis Class]
 \RequirePackage{etoolbox}
 %Declaration of options
 \newbool{@sig} 
@@ -23,7 +23,7 @@
 \LoadClass[11pt,letterpaper]{report}%book}
 
 %% AMSLaTeX math environments and symbols
-\RequirePackage{amsmath,amssymb}
+\RequirePackage{amsmath,amsthm,amssymb}
 \RequirePackage[normalem]{ulem}
 \RequirePackage[hmargin=1in,vmargin=1in,footskip=.25in,headsep=.25in,nomarginpar]{geometry}
 \RequirePackage{enumerate}
@@ -38,6 +38,16 @@
 %MATLAB Code formatting
 \RequirePackage{listings}
 \RequirePackage{verbatim}
+
+%define theorems and such
+\newtheorem{proposition}{Proposition}[chapter]
+\newtheorem{theorem}[proposition]{Theorem}
+\newtheorem{lemma}[proposition]{Lemma}
+\newtheorem{corollary}[proposition]{Corollary}
+\newtheorem{conjecture}[proposition]{Proposition}
+\newtheorem{example}[proposition]{Example}
+\newtheorem{definition}[proposition]{Definition}
+\newtheorem{remark}[proposition]{Remark}
 
 \lstset{% command to set programming language parameter(s)
 frame=single,

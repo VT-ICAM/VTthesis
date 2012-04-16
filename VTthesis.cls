@@ -56,7 +56,7 @@
 \newtheorem{theorem}[proposition]{Theorem}
 \newtheorem{lemma}[proposition]{Lemma}
 \newtheorem{corollary}[proposition]{Corollary}
-\newtheorem{conjecture}[proposition]{Proposition}
+\newtheorem{conjecture}[proposition]{Conjecture}
 \newtheorem{example}[proposition]{Example}
 \newtheorem{definition}[proposition]{Definition}
 \newtheorem{remark}[proposition]{Remark}

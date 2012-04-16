@@ -41,7 +41,7 @@
 \ifbool{@dbl}{\doublespace}{}
 
 %links for references
-\RequirePackage{hyperref}
+\RequirePackage[final]{hyperref}
 
 %For including pdf images
 \RequirePackage{graphicx}

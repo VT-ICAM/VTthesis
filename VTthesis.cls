@@ -1,6 +1,6 @@
 % v1.22 by Erich L Foster 10 April 2012
 %%% IDENTIFICATION --------------------------------------------------------
-%\NeedsTeXFormat{LaTeX2e}[01/01/10]
+\NeedsTeXFormat{LaTeX2e}[01/01/10]
 \ProvidesClass{VTthesis}[16/04/2012 v2.7 Virginia Tech Thesis Proposal and Thesis Class]
 \RequirePackage{etoolbox}
 %Declaration of options

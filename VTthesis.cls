@@ -35,6 +35,12 @@
 \RequirePackage{enumerate}
 \RequirePackage{paralist}
 \RequirePackage[page]{appendix}
+
+%double space option
+\RequirePackage{setspace}
+\ifbool{@dbl}{\doublespace}{}
+
+%links for references
 \RequirePackage{hyperref}
 
 %For including pdf images
@@ -44,10 +50,6 @@
 %MATLAB Code formatting
 \RequirePackage{listings}
 \RequirePackage{verbatim}
-
-%double space option
-\RequirePackage{setspace}
-\ifbool{@dbl}{\doublespace}{}
 
 %define theorems and such
 \newtheorem{proposition}{Proposition}[chapter]

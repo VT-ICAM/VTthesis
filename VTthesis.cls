@@ -8,10 +8,13 @@
 \boolfalse{@sig}
 \newbool{@proposal} 
 \boolfalse{@proposal}
+\newbool{@dbl}
+\boolfalse{@dbl}
 
 \DeclareOption{sig}{\booltrue{@sig}}
 \DeclareOption{nosig}{\boolfalse{@sig}}
 \DeclareOption{proposal}{\booltrue{@proposal}}
+\DeclareOption{doublespace}{\booltrue{@dbl}}
 %%% EXECUTION OF OPTIONS --------------------------------------------------
 %% default to:
 \ExecuteOptions{nosig}
@@ -38,6 +41,10 @@
 %MATLAB Code formatting
 \RequirePackage{listings}
 \RequirePackage{verbatim}
+
+%double space option
+\RequirePackage{setspace}
+\ifbool{@dbl}{\doublespace}{}
 
 %define theorems and such
 \newtheorem{proposition}{Proposition}[chapter]

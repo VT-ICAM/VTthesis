@@ -1,7 +1,7 @@
 % v1.22 by Erich L Foster 10 April 2012
 %%% IDENTIFICATION --------------------------------------------------------
 %\NeedsTeXFormat{LaTeX2e}[01/01/10]
-\ProvidesClass{VTthesis}[15/04/2012 v2.3 Virginia Tech Thesis Proposal and Thesis Class]
+\ProvidesClass{VTthesis}[15/04/2012 v2.4 Virginia Tech Thesis Proposal and Thesis Class]
 \RequirePackage{etoolbox}
 %Declaration of options
 \newbool{@sig} 

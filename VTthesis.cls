@@ -1,7 +1,7 @@
 % v1.22 by Erich L Foster 10 April 2012
 %%% IDENTIFICATION --------------------------------------------------------
 %\NeedsTeXFormat{LaTeX2e}[01/01/10]
-\ProvidesClass{VTthesis}[16/04/2012 v2.4 Virginia Tech Thesis Proposal and Thesis Class]
+\ProvidesClass{VTthesis}[16/04/2012 v2.5 Virginia Tech Thesis Proposal and Thesis Class]
 \RequirePackage{etoolbox}
 %Declaration of options
 \newbool{@sig} 
@@ -10,11 +10,14 @@
 \boolfalse{@proposal}
 \newbool{@dbl}
 \boolfalse{@dbl}
+\newbool{@dft}
+\boolfalse{@dft}
 
 \DeclareOption{sig}{\booltrue{@sig}}
 \DeclareOption{nosig}{\boolfalse{@sig}}
 \DeclareOption{proposal}{\booltrue{@proposal}}
 \DeclareOption{doublespace}{\booltrue{@dbl}}
+\DeclareOption{draft}{\booltrue{@dft}}
 %%% EXECUTION OF OPTIONS --------------------------------------------------
 %% default to:
 \ExecuteOptions{nosig}
@@ -145,7 +148,8 @@ frame=single,
 \fancyhead[L]{\@author}
 \fancyhead[C]{\chaptername\ \thechapter}
 \fancyhead[R]{\thepage}
-\fancyfoot[L,C,R]{}
+\ifbool{@dft}{\fancyfoot[C]{\textbf{DRAFT}}}{\fancyfoot[C]{}}
+\fancyfoot[L,R]{}
 \renewcommand\headrulewidth{0.0pt}
 
 %setup up frontmatter, mainmatter, backmatter

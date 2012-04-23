@@ -1,7 +1,7 @@
 % v1.22 by Erich L Foster 10 April 2012
 %%% IDENTIFICATION --------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[01/01/10]
-\ProvidesClass{VTthesis}[16/04/2012 v2.8 Virginia Tech Thesis Proposal and Thesis Class]
+\ProvidesClass{VTthesis}[23/04/2012 v3.9 Virginia Tech Thesis Proposal and Thesis Class]
 \RequirePackage{etoolbox}
 %Declaration of options
 \newbool{@sig} 
@@ -170,7 +170,19 @@ frame=single,
   \cleardoublepage
   \fancyhead[C]{\appendixname\ \thechapter}
 }
+%redefine the appendix to show up as sections in the TOC with Appendices as the Chapter
+\newcommand\appendix@chapter[1]{%
+  \refstepcounter{chapter}%
+  \orig@chapter*{{\huge Appendix \@Alph\c@chapter}\\[0.75em] #1}%
+  \addcontentsline{toc}{section}{\@Alph\c@chapter\ \  #1}%
+}
+\let\orig@chapter\chapter
+\g@addto@macro\appendix{\let\chapter\appendix@chapter}
+
+%have the bibliography show in the TOC and make sure the header says bibliography
 \pretocmd{\bibliography}{\biblio}{}{}
+%add the appendices to the TOC 
+\pretocmd{\appendix}{\addcontentsline{toc}{chapter}{Appendices}}{}{}
 \apptocmd{\appendix}{\backmatter}{}{}
 
 %setup title page, abstract page, dedication page, and acknowledgement page

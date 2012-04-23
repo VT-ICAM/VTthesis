@@ -235,15 +235,20 @@ frame=single,
 
 \def\ackpage{
   \chapter*{Acknowledgments}
-  %\pdfbookmark[1]{Acknowledgments}{acknowledgments}
   \@acknowledge
   \newpage
 }
 
 \def\dedpage{
-  \chapter*{Dedication}
-  %\pdfbookmark[1]{Dedication}{dedication}
-  \@dedication
+  \thispagestyle{empty}
+  %\chapter*{Dedication}
+  \vspace*{\fill}
+  \begingroup
+  \begin{center}
+    \emph{\@dedication}
+  \end{center}
+  \endgroup
+  \vspace*{\fill}
   \newpage
 }
 

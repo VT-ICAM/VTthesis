@@ -147,21 +147,25 @@ frame=single,
 % Setup the header and footer
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
-\fancyhead[L]{\@author}
-\fancyhead[C]{\chaptername\ \thechapter}
-\fancyhead[R]{\thepage}
-\ifbool{@dft}{\fancyfoot[C]{\textbf{DRAFT}}}{\fancyfoot[C]{}}
-\fancyfoot[L,R]{}
-\renewcommand\headrulewidth{0.0pt}
 
 %setup up frontmatter, mainmatter, backmatter
 %the formatting for these sections will be different
 \newcommand{\frontmatter}{
   \cleardoublepage
-  \pagenumbering{roman}}
+  \pagenumbering{roman}
+  \fancyhead[L,C,R]{}
+  \ifbool{@dft}{\fancyfoot[C]{\thepage\\\textbf{DRAFT}\\}}{\fancyfoot[C]{\thepage}}
+  \fancyfoot[L,R]{}
+  \renewcommand\headrulewidth{0.0pt}}
 \newcommand{\mainmatter}{
   \cleardoublepage
-  \pagenumbering{arabic}}
+  \pagenumbering{arabic}
+  \fancyhead[L]{\@author}
+  \fancyhead[C]{\chaptername\ \thechapter}
+  \fancyhead[R]{\thepage}
+  \ifbool{@dft}{\fancyfoot[C]{\textbf{DRAFT}}}{\fancyfoot[C]{}}
+  \fancyfoot[L,R]{}
+  \renewcommand\headrulewidth{0.0pt}}
 \newcommand{\biblio}{
   \cleardoublepage
   \addcontentsline{toc}{chapter}{\bibname}

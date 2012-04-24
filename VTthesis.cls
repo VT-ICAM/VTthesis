@@ -153,8 +153,9 @@ frame=single,
 \newcommand{\frontmatter}{
   \cleardoublepage
   \pagenumbering{roman}
-  \fancyhead[L,C,R]{}
-  \ifbool{@dft}{\fancyfoot[C]{\thepage\\\textbf{DRAFT}\\}}{\fancyfoot[C]{\thepage}}
+  \fancyhead[L,R]{}
+  \fancyhead[C]{\textbf{DRAFT}}
+  \ifbool{@dft}{\fancyfoot[C]{\thepage}}{\fancyfoot[C]{\thepage}}
   \fancyfoot[L,R]{}
   \renewcommand\headrulewidth{0.0pt}}
 \newcommand{\mainmatter}{

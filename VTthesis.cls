@@ -1,12 +1,12 @@
-% v1.22 by Erich L Foster 10 April 2012
+% v1.23 by Erich L Foster 29 March 2013
 %%% IDENTIFICATION --------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[01/01/10]
 \ProvidesClass{VTthesis}[24/04/2012 v4.0 Virginia Tech Thesis Proposal and Thesis Class]
 \RequirePackage{etoolbox}
 %Declaration of options
-\newbool{@sig} 
+\newbool{@sig}
 \boolfalse{@sig}
-\newbool{@proposal} 
+\newbool{@proposal}
 \boolfalse{@proposal}
 \newbool{@dbl}
 \boolfalse{@dbl}
@@ -26,7 +26,7 @@
 
 %%% PACKAGE LOADING -------------------------------------------------------
 %% based on std report class
-\LoadClass[11pt,letterpaper]{report}%book}
+\LoadClass[12pt,letterpaper]{report}%book}
 
 %% AMSLaTeX math environments and symbols
 \RequirePackage{amsmath,amsthm,amssymb}
@@ -65,7 +65,7 @@
 frame=single,
 	showstringspaces=false,
 	showlines=false, %get rid of trailing white lines
-	emptylines=1, %allow blank line 
+	emptylines=1, %allow blank line
 	breaklines=true, %get rid of overflow lines and enter \n
 	numbers=left, %line number
 	numberstyle=\scriptsize, %make line numbers small
@@ -101,15 +101,15 @@ frame=single,
 \fi
 
 %committee information
-\newbool{@1st} 
+\newbool{@1st}
 \boolfalse{@1st}
-\newbool{@2nd} 
+\newbool{@2nd}
 \boolfalse{@2nd}
-\newbool{@3rd} 
+\newbool{@3rd}
 \boolfalse{@3rd}
-\newbool{@4th} 
+\newbool{@4th}
 \boolfalse{@4th}
-\newbool{@5th} 
+\newbool{@5th}
 \boolfalse{@5th}
 \def\@principaladvisor{}
 \def\@firstreader{}
@@ -186,7 +186,7 @@ frame=single,
 
 %have the bibliography show in the TOC and make sure the header says bibliography
 \pretocmd{\bibliography}{\biblio}{}{}
-%add the appendices to the TOC 
+%add the appendices to the TOC
 \pretocmd{\appendix}{\addcontentsline{toc}{chapter}{Appendices}}{}{}
 \apptocmd{\appendix}{\backmatter}{}{}
 
@@ -198,14 +198,14 @@ frame=single,
 	\vfill
 	\rm \@author\\
 	\vfill
-	
+
   \ifbool{@proposal}{
     \noindent Thesis proposal for}
     {\noindent Dissertation submitted to the Faculty of the \\
     Virginia Polytechnic Institute and State University \\
-    in partial fulfillment of the requirements for the degree of \\} 
+    in partial fulfillment of the requirements for the degree of \\}
 
-  \vfill 
+  \vfill
   \@degree \\
   in \\
   \@program \\
@@ -222,7 +222,7 @@ frame=single,
 	\@submitdate\\
 	Blacksburg, Virginia\\
 
-  \ifbool{@key}{\vfill 
+  \ifbool{@key}{\vfill
     Keywords: \@keywords\\}{}
 
   \vfill
@@ -236,10 +236,10 @@ frame=single,
 \def\abspage{
   \thispagestyle{empty}
   \begin{center}
-  \noindent {\Large \@title} \\ 
+  \noindent {\Large \@title} \\
 
   \vfill
-  \noindent  \@author \\ 
+  \noindent  \@author \\
   \vfill
 
   (ABSTRACT)

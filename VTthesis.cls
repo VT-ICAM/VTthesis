@@ -8,16 +8,16 @@
 \boolfalse{@sig}
 \newbool{@proposal}
 \boolfalse{@proposal}
-\newbool{@dbl}
-\boolfalse{@dbl}
 \newbool{@dft}
 \boolfalse{@dft}
+\newbool{@dbl}
+\boolfalse{@dbl}
 
 \DeclareOption{sig}{\booltrue{@sig}}
 \DeclareOption{nosig}{\boolfalse{@sig}}
 \DeclareOption{proposal}{\booltrue{@proposal}}
-\DeclareOption{doublespace}{\booltrue{@dbl}}
 \DeclareOption{draft}{\booltrue{@dft}}
+\DeclareOption{doublespace}{\booltrue{@dbl}}
 %%% EXECUTION OF OPTIONS --------------------------------------------------
 %% default to:
 \ExecuteOptions{nosig}
@@ -154,8 +154,7 @@ frame=single,
   \cleardoublepage
   \pagenumbering{roman}
   \fancyhead[L,R]{}
-  \fancyhead[C]{\textbf{DRAFT}}
-  \ifbool{@dft}{\fancyfoot[C]{\thepage}}{\fancyfoot[C]{\thepage}}
+  \ifbool{@dft}{\fancyhead[C]{\textbf{DRAFT}}}{\fancyfoot[C]{\thepage}}{\fancyfoot[C]{\thepage}}
   \fancyfoot[L,R]{}
   \renewcommand\headrulewidth{0.0pt}}
 \newcommand{\mainmatter}{

@@ -21,7 +21,7 @@
 \DeclareOption{sig}{\booltrue{@sig}}
 \DeclareOption{nosig}{\boolfalse{@sig}}
 \DeclareOption{proposal}{\booltrue{@proposal}}
-\DeclareOption{draft}{\booltrue{@dft}}
+\DeclareOption{draft}{\booltrue{@dft} \booltrue{@dbl}}
 \DeclareOption{doublespace}{\booltrue{@dbl}}
 %%% EXECUTION OF OPTIONS --------------------------------------------------
 %% default to:

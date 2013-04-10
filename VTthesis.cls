@@ -143,8 +143,8 @@ frame=single,
 \newbool{@ded}
 \boolfalse{@ded}
 \long\def\abstract#1{\booltrue{@abs} \gdef\@abstract{#1}}
-\def\acknowledge#1{\booltrue{@ack} \gdef\@acknowledge{#1}}
-\def\dedication#1{\booltrue{@ded} \gdef\@dedication{#1}}
+\long\def\acknowledge#1{\booltrue{@ack} \gdef\@acknowledge{#1}}
+\long\def\dedication#1{\booltrue{@ded} \gdef\@dedication{#1}}
 \def\keywords#1{\booltrue{@key} \gdef\@keywords{#1}}
 
 \newcommand{\@vtcopyright}{Copyright \@copyrightyear, \@author}

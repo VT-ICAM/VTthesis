@@ -1,4 +1,4 @@
-% v1.25 by Erich L Foster 01 April 2013
+% v1.27 by Erich L Foster 10 April 2013
 %%% IDENTIFICATION --------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[01/01/10]
 \ProvidesClass{VTthesis}[01/04/2013 v1.25 Virginia Tech Thesis Proposal and Thesis Class]
@@ -32,6 +32,7 @@
 %%% PACKAGE LOADING -------------------------------------------------------
 %% based on std report class
 \LoadClass[\@@ptsize,letterpaper]{report}%book}
+\RequirePackage{lmodern}
 
 %% AMSLaTeX math environments and symbols
 \RequirePackage{amsmath,amsthm,amssymb}
@@ -51,6 +52,13 @@
 %For including pdf images
 \RequirePackage[final]{graphicx}
 \RequirePackage{float}
+
+%draft watermark
+\ifbool{@dft}{
+\PassOptionsToPackage{final}{hyperref}
+\PassOptionsToPackage{final}{graphicx}
+\usepackage[firstpage]{draftwatermark}}{}
+
 
 %MATLAB Code formatting
 \RequirePackage{listings}
@@ -143,8 +151,14 @@ frame=single,
 \newbool{@ded}
 \boolfalse{@ded}
 \long\def\abstract#1{\booltrue{@abs} \gdef\@abstract{#1}}
-\long\def\acknowledge#1{\booltrue{@ack} \gdef\@acknowledge{#1}}
-\long\def\dedication#1{\booltrue{@ded} \gdef\@dedication{#1}}
+\long\def\acknowledge#1{
+  \ifbool{@dft}{}
+  {\booltrue{@ack} \gdef\@acknowledge{#1}}
+}
+\long\def\dedication#1{
+  \ifbool{@dft}{}
+  {\booltrue{@ded} \gdef\@dedication{#1}}
+}
 \def\keywords#1{\booltrue{@key} \gdef\@keywords{#1}}
 
 \newcommand{\@vtcopyright}{Copyright \@copyrightyear, \@author}

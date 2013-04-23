@@ -275,7 +275,7 @@ frame=single,
 }
 
 \def\dedpage{
-  \thispagestyle{empty}
+  %\thispagestyle{empty}
   %\chapter*{Dedication}
   \vspace*{\fill}
   \begingroup

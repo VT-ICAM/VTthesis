@@ -62,6 +62,7 @@
 
 %MATLAB Code formatting
 \RequirePackage{listings}
+\PassOptionsToPackage{final}{listings}
 \RequirePackage{verbatim}
 
 %define theorems and such

@@ -1,7 +1,7 @@
-% v1.27 by Erich L Foster 10 April 2013
+% v2.0 by Erich L Foster 01 May 2013
 %%% IDENTIFICATION --------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[01/01/10]
-\ProvidesClass{VTthesis}[01/04/2013 v1.25 Virginia Tech Thesis Proposal and Thesis Class]
+\ProvidesClass{VTthesis}[01/05/2013 v2.0 Virginia Tech Thesis Proposal and Thesis Class]
 \RequirePackage{etoolbox}
 %Declaration of options
 \def\@@ptsize{12pt}
@@ -33,6 +33,9 @@
 %% based on std report class
 \LoadClass[\@@ptsize,letterpaper]{report}%book}
 \RequirePackage{lmodern}
+
+%used for List of Figures and table magic
+\RequirePackage{etoolbox}
 
 %% AMSLaTeX math environments and symbols
 \RequirePackage{amsmath,amsthm,amssymb}
@@ -168,6 +171,16 @@ frame=single,
 \RequirePackage{fancyhdr}
 \pagestyle{fancy}
 
+%the following is a hack to deal with the possibility of having no figures
+\AtEndEnvironment{figure}{\gdef\there@is@a@figure{}}
+\AtEndDocument{\ifdefined\there@is@a@figure\label{fig:was:used:in:doc}\fi}
+\newcommand{\conditionalLoF}{\@ifundefined{r@fig:was:used:in:doc}{}{\listoffigures}}%
+
+%the following is a hack to deal with the possibility of having no figures
+\AtEndEnvironment{table}{\gdef\there@is@a@table{}}
+\AtEndDocument{\ifdefined\there@is@a@table\label{tab:was:used:in:doc}\fi}
+\newcommand{\conditionalLoT}{\@ifundefined{r@tab:was:used:in:doc}{}{\listoftables}}%
+
 %setup up frontmatter, mainmatter, backmatter
 %the formatting for these sections will be different
 \newcommand{\frontmatter}{
@@ -176,7 +189,12 @@ frame=single,
   \fancyhead[L,R]{}
   \ifbool{@dft}{\fancyhead[C]{\textbf{DRAFT}}}{\fancyfoot[C]{\thepage}}{\fancyfoot[C]{\thepage}}
   \fancyfoot[L,R]{}
-  \renewcommand\headrulewidth{0.0pt}}
+  \renewcommand\headrulewidth{0.0pt}
+  \maketitle
+  \tableofcontents
+  \conditionalLoT
+  \conditionalLoF
+}
 \newcommand{\mainmatter}{
   \cleardoublepage
   \pagenumbering{arabic}
@@ -276,8 +294,6 @@ frame=single,
 }
 
 \def\dedpage{
-  %\thispagestyle{empty}
-  %\chapter*{Dedication}
   \vspace*{\fill}
   \begingroup
   \begin{center}

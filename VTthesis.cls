@@ -1,7 +1,7 @@
 % v2.0 by Erich L Foster 01 May 2013
 %%% IDENTIFICATION --------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[01/01/10]
-\ProvidesClass{VTthesis}[01/05/2013 v2.0 Virginia Tech Thesis Proposal and Thesis Class]
+\ProvidesClass{VTthesis}[24/07/2013 v3.0 Virginia Tech Thesis Proposal and Thesis Class]
 \RequirePackage{etoolbox}
 %Declaration of options
 \def\@@ptsize{12pt}
@@ -99,6 +99,8 @@ frame=single,
 \def\@title{}
 \def\@author{}
 \def\@degree{Doctor of Philosophy}
+\def\@institute{Virginia Polytechnica Institute and State University}
+\def\@location{Blacksburg, Virginia}
 \def\@program{Mathematics}
 \def\@submitdate{\the\day \space \ifcase\the\month\or
   January\or February\or March\or April\or May\or June\or
@@ -107,6 +109,8 @@ frame=single,
 
 \def\type#1{\gdef\@type{#1}}
 \def\degree#1{\gdef\@degree{#1}}
+\def\institute#1{\gdef\@institute{#1}}
+\def\location#1{\gdef\@location{#1}}
 \def\program#1{\gdef\@program{#1}}
 \def\submitdate#1{\gdef\@submitdate{#1}}
 
@@ -176,7 +180,7 @@ frame=single,
 \AtEndDocument{\ifdefined\there@is@a@figure\label{fig:was:used:in:doc}\fi}
 \newcommand{\conditionalLoF}{\@ifundefined{r@fig:was:used:in:doc}{}{\listoffigures}}%
 
-%the following is a hack to deal with the possibility of having no figures
+%the following is a hack to deal with the possibility of having no tables
 \AtEndEnvironment{table}{\gdef\there@is@a@table{}}
 \AtEndDocument{\ifdefined\there@is@a@table\label{tab:was:used:in:doc}\fi}
 \newcommand{\conditionalLoT}{\@ifundefined{r@tab:was:used:in:doc}{}{\listoftables}}%
@@ -239,7 +243,7 @@ frame=single,
   \ifbool{@proposal}{
     \noindent Thesis proposal for}
     {\noindent Dissertation submitted to the Faculty of the \\
-    Virginia Polytechnic Institute and State University \\
+    \@institute \\
     in partial fulfillment of the requirements for the degree of \\}
 
   \vfill
@@ -257,7 +261,7 @@ frame=single,
   \vfill
 
 	\@submitdate\\
-	Blacksburg, Virginia\\
+	\@location\\
 
   \ifbool{@key}{\vfill
     Keywords: \@keywords\\}{}

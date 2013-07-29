@@ -210,8 +210,8 @@ frame=single,
   \renewcommand\headrulewidth{0.0pt}}
 \newcommand{\biblio}{
   \cleardoublepage
-  \addcontentsline{toc}{chapter}{\bibname}
-  \fancyhead[C]{\bibname}}
+  \fancyhead[C]{\bibname}
+}
 \newcommand{\backmatter}{
   \cleardoublepage
   \fancyhead[C]{\appendixname\ \thechapter}
@@ -227,9 +227,11 @@ frame=single,
 
 %have the bibliography show in the TOC and make sure the header says bibliography
 \pretocmd{\bibliography}{\biblio}{}{}
+\apptocmd{\bibliography}{\addcontentsline{toc}{chapter}{\bibname}}{}{}
 %add the appendices to the TOC
-\pretocmd{\appendix}{\addcontentsline{toc}{chapter}{Appendices}}{}{}
-\apptocmd{\appendix}{\backmatter}{}{}
+\apptocmd{\appendix}{
+  \addcontentsline{toc}{chapter}{Appendices}
+  \backmatter}{}{}
 
 %setup title page, abstract page, dedication page, and acknowledgement page
 \def\titlepage{%

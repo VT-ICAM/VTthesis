@@ -49,12 +49,13 @@
 \RequirePackage{setspace}
 \ifbool{@dbl}{\doublespace}{}
 
+\RequirePackage{float}
+
 %links for references
 \RequirePackage[final]{hyperref}
 
 %For including pdf images
 \RequirePackage[final]{graphicx}
-%\RequirePackage{float}
 
 %draft watermark
 \ifbool{@dft}{

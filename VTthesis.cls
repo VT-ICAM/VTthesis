@@ -1,7 +1,7 @@
 % v2.0 by Erich L Foster 01 May 2013
 %%% IDENTIFICATION --------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[01/01/10]
-\ProvidesClass{VTthesis}[29/07/2013 v3.1 Virginia Tech Thesis Proposal and Thesis Class]
+\ProvidesClass{VTthesis}[29/07/2013 v3.2 Virginia Tech Thesis Proposal and Thesis Class]
 \RequirePackage{etoolbox}
 %Declaration of options
 \def\@@ptsize{12pt}
@@ -54,7 +54,7 @@
 
 %For including pdf images
 \RequirePackage[final]{graphicx}
-\RequirePackage{float}
+%\RequirePackage{float}
 
 %draft watermark
 \ifbool{@dft}{

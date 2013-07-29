@@ -50,6 +50,12 @@
 \ifbool{@dbl}{\doublespace}{}
 
 \RequirePackage{float}
+\RequirePackage{fancyhdr}
+
+%MATLAB Code formatting
+\RequirePackage{listings}
+\PassOptionsToPackage{final}{listings}
+\RequirePackage{verbatim}
 
 %links for references
 \RequirePackage[final]{hyperref}
@@ -63,11 +69,6 @@
 \PassOptionsToPackage{final}{graphicx}
 \usepackage[firstpage]{draftwatermark}}{}
 
-
-%MATLAB Code formatting
-\RequirePackage{listings}
-\PassOptionsToPackage{final}{listings}
-\RequirePackage{verbatim}
 
 %define theorems and such
 \newtheorem{proposition}{Proposition}[chapter]
@@ -173,7 +174,6 @@ frame=single,
 \newcommand{\@vtcopyright}{Copyright \@copyrightyear, \@author}
 
 % Setup the header and footer
-\RequirePackage{fancyhdr}
 \pagestyle{fancy}
 
 %the following is a hack to deal with the possibility of having no figures

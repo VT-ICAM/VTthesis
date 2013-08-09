@@ -1,12 +1,10 @@
-% v2.0 by Erich L Foster 01 May 2013
+% v4.0 by Erich L Foster 09 August 2013
 %%% IDENTIFICATION --------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}[01/01/10]
-\ProvidesClass{VTthesis}[29/07/2013 v3.2 Virginia Tech Thesis Proposal and Thesis Class]
+\ProvidesClass{VTthesis}[09/08/2013 v4.0 Virginia Tech Thesis Proposal and Thesis Class]
 \RequirePackage{etoolbox}
 %Declaration of options
 \def\@@ptsize{12pt}
-\newbool{@sig}
-\boolfalse{@sig}
 \newbool{@proposal}
 \boolfalse{@proposal}
 \newbool{@dft}
@@ -18,14 +16,12 @@
 \DeclareOption{11pt}{\def\@@ptsize{11pt}}
 \DeclareOption{12pt}{\def\@@ptsize{12pt}}
 \DeclareOption{13pt}{\def\@@ptsize{13pt}}
-\DeclareOption{sig}{\booltrue{@sig}}
-\DeclareOption{nosig}{\boolfalse{@sig}}
 \DeclareOption{proposal}{\booltrue{@proposal}}
 \DeclareOption{draft}{\booltrue{@dft} \booltrue{@dbl}}
 \DeclareOption{doublespace}{\booltrue{@dbl}}
 %%% EXECUTION OF OPTIONS --------------------------------------------------
 %% default to:
-\ExecuteOptions{nosig}
+\ExecuteOptions{}
 
 \ProcessOptions
 
@@ -148,18 +144,22 @@ frame=single,
 \def\fifthreader#1{\booltrue{@5th} \gdef\@fifthreader{#1}}
 
 %abstract, acknowledgements, dedication, and keywords setup
+\def\@disclaimer{}
 \def\@abstract{}
 \def\@acknowledge{}
 \def\@dedication{}
 \def\@keywords{}
 \newbool{@key}
 \boolfalse{@key}
+\newbool{@dis}
+\boolfalse{@dis}
 \newbool{@abs}
 \boolfalse{@abs}
 \newbool{@ack}
 \boolfalse{@ack}
 \newbool{@ded}
 \boolfalse{@ded}
+\long\def\disclaimer#1{\booltrue{@dis} \gdef\@disclaimer{#1}}
 \long\def\abstract#1{\booltrue{@abs} \gdef\@abstract{#1}}
 \long\def\acknowledge#1{
   \ifbool{@dft}{}
@@ -277,6 +277,16 @@ frame=single,
   \addtocounter{page}{1}
 }
 
+\def\dispage{
+  \thispagestyle{empty}
+  \vspace*{\fill}
+    \begingroup
+      \noindent{ \@disclaimer}
+    \endgroup
+  \vspace*{\fill}
+  \newpage
+}
+
 \def\abspage{
   \thispagestyle{empty}
   \begin{center}
@@ -313,13 +323,12 @@ frame=single,
 
 %This is where the main magic happens
 \renewcommand\maketitle{
-  %\ifbool{@sig}{
-  %  \pdfbookmark[1]{Signature Page}{sigpage}
-  %  \sigpage}{}
-
   \setcounter{page}{0}
   \pdfbookmark[1]{Titlepage}{titlepage}
   \titlepage
+  \ifbool{@dis}{
+    \pdfbookmark[1]{Disclaimer}{disclaimer}
+    \dispage}{}
   \ifbool{@abs}{
     \pdfbookmark[1]{Abstract}{abstract}
     \abspage}{}
